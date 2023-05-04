@@ -1,0 +1,17 @@
+from aminofix import exceptions
+
+import os
+
+from hmac import new
+
+from hashlib import sha1
+
+def device_generator():
+
+     identifier = os.urandom(20)
+
+     return ("52" + identifier.hex() + new(bytes.fromhex("ae49550458d8e7c51d566916b04888bfb8b3ca7d"), b"\x52" + identifier, sha1).hexdigest()).upper()
+
+while True:
+
+    print (device_generator())
